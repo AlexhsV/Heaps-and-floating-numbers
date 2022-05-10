@@ -2,7 +2,14 @@
 #include <iostream>
 #include <random>
 #include <functional>
+#include <cmath>
 using namespace std;
+
+bool compare_float(float x, float y, float epsilon = 0.01f){
+   if(fabs(x - y) < epsilon)
+      return true; //they are same
+      return false; //they are not same
+}
 
 int main(){
 
@@ -22,10 +29,10 @@ int main(){
     float* heap_min = new float[N+1]; //create dynamic array 
     for (int i = 1; i < N+1; i++) {           
         heap_min[i] = random_num() * 10000.0;
-        cout << heap_min[i] << endl;
+        //cout << heap_min[i] << endl;
     }
 
-    cout << "----------------- "<< endl;
+    cout << "--------------------------------------------------------- "<< endl;
 
     float* heap_max = new float[N+1]; //create dynamic array
     for (int i = 1; i < N+1; i++) {         
@@ -38,83 +45,56 @@ int main(){
     maximumHeap.Initialize(heap_max, N, N);
     minimumHeap.Initialize(heap_min, N, N);
 
-    float tempMin1,tempMin2,tempSumMin;
+    float tempMin1,tempMin2,SumMin;
     while (true){
 
-        cout << minimumHeap.heap2_0() << " heap0" << endl;
-        cout << minimumHeap.heap2_1() << " heap1" << endl;
-        cout << minimumHeap.heap2_2() << " heap2" << endl;
-        cout << minimumHeap.heap2_3() << " heap3" << endl;
-        cout << minimumHeap.heap2_4() << " heap4" << endl;
-        cout << minimumHeap.Size() << " : size " << endl;
         minimumHeap.DeleteMin(tempMin1);
-
         minimumHeap.DeleteMin(tempMin2);
         
+        SumMin = tempMin1 + tempMin2;
 
-        cout << minimumHeap.heap2_0() << " heap0" << endl;
-
-        cout << tempMin1 << ": tempMin1" << endl;
-        cout << tempMin2 << ": tempMin2" << endl;
-
-        tempSumMin = tempMin1 + tempMin2;
-
-        cout << fixed;
-        cout << tempSumMin << endl;
-
-        minimumHeap.Insert(tempSumMin);
-
-
-        cout << minimumHeap.heap2_0() << " heap0" << endl;
-        cout << minimumHeap.heap2_1() << " heap1" << endl;
-        cout << minimumHeap.heap2_2() << " heap2" << endl;
-        cout << minimumHeap.heap2_3() << " heap3" << endl;
-        cout << minimumHeap.heap2_4() << " heap4" << endl;
-
-
-        cout << minimumHeap.Size() << " : size " << endl;
+        minimumHeap.Insert(SumMin);
 
         if (minimumHeap.Size() == 1){
-       //     float sumFromMinHeap = tempSumMin;
-             cout << minimumHeap.Size() << " : size " << endl;
-            minimumHeap.DeleteMin(tempSumMin);
-            cout << minimumHeap.Size() << " : size " << endl;
-            cout << fixed;
-            cout << tempSumMin << endl;
-     //       cout << fixed;
-    //        cout << sumFromMinHeap << endl;
+
+            minimumHeap.DeleteMin(SumMin);          //extraction of last element which has the sum of the heap
+
+            //cout << fixed;
+            cout << SumMin <<", is the sum of the Max Heap" << endl;
             break;
         }
     }
 
 
-    float tempMax1,tempMax2,tempSumMax;
-        while (true){
+    float tempMax1,tempMax2,SumMax;
+    while (true){
 
-            maximumHeap.DeleteMax(tempMax1);
-
-            maximumHeap.DeleteMax(tempMax2);
+        maximumHeap.DeleteMax(tempMax1);
+        maximumHeap.DeleteMax(tempMax2);
             
-            tempSumMax = tempMax1 + tempMax2;
+        SumMax = tempMax1 + tempMax2;
 
-            maximumHeap.Insert(tempSumMax);
+        maximumHeap.Insert(SumMax);
 
-            if (maximumHeap.Size() == 1){
-                float sumFromMaxHeap = tempSumMax;
-                cout << fixed;
-                cout << sumFromMaxHeap << endl;
-                break;
-            }
+        if (maximumHeap.Size() == 1){
+                
+            maximumHeap.DeleteMax(SumMax);
+
+            //cout << fixed;
+            cout << SumMax <<", is the sum of the Min Heap" << endl;
+            cout << endl;
+            break;
         }
+    }
 
-
-
-
+    if(compare_float(SumMin, SumMax, 0.001f)){
+        cout << "They are equivalent." << endl;
+    } else {
+        cout << "They are not equivalent." << endl;
+    }
 
     delete [] heap_min;
     delete [] heap_max;
-
-
 
     return 0;
 }
