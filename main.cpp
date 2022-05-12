@@ -14,13 +14,13 @@ bool compare_float(float x, float y, float epsilon = 0.01f){
 int main(){
 
     int N; 
-    do {
-        cout << "Enter the size of the array named: heap_min: ";
-        cin >> N;
-        if (N <= 0){
-            cout << "Invalid size, please try again!\n" << "TIP: (the size of the array must be an integer greater than 0)\n \n";
-        }
-    } while (N <= 0);       //sto telos prepei na allaxtei gia N > 10.000.000
+    cout << "Enter the size of the array named: heap_min: ";
+    cin >> N;
+    while (N <= 0){                //sto telos prepei na allaxtei gia N > 10.000.000
+         cout << "Invalid size, please try again!\n" << "TIP: (the size of the array must be an integer greater than 0): ";
+         cin >> N;
+         cout << endl;
+    }
 
     default_random_engine generator;
     chi_squared_distribution<float> my_distribution(0.5);
@@ -59,7 +59,7 @@ int main(){
 
             minimumHeap.DeleteMin(SumMin);          //extraction of last element which has the sum of the heap
 
-            //cout << fixed;
+            cout << fixed;
             cout << SumMin <<", is the sum of the Max Heap" << endl;
             break;
         }
