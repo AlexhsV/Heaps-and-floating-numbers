@@ -4,6 +4,7 @@
         "functional": "cpp",
         "iostream": "cpp",
         "ostream": "cpp",
-        "atomic": "cpp"
+        "atomic": "cpp",
+        "xlocale": "cpp"
     }
 }

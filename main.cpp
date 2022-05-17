@@ -6,10 +6,11 @@
 using namespace std;
 
 bool compare_float(float x, float y, float epsilon = 0.01f){
-   if(fabs(x - y) < epsilon)
+   if(fabs(x - y) < epsilon) //check if the absolute value of the difference of SumMax and SumMin is less than epsilon, where epsilon is the least positive number defined as 0.01
       return true; //they are same
       return false; //they are not same
 }
+
 
 int main(){
 
@@ -34,34 +35,34 @@ int main(){
 
     cout << "--------------------------------------------------------- "<< endl;
 
-    float* heap_max = new float[N+1]; //create dynamic array
+    float* heap_max = new float[N+1]; //create dynamic array 
     for (int i = 1; i < N+1; i++) {         
         heap_max[i] = heap_min[i];
     }
 
 
-    MaxHeap<float> maximumHeap;
-    MinHeap<float> minimumHeap;
-    maximumHeap.Initialize(heap_max, N, N);
+    MaxHeap<float> maximumHeap;        //declare  MaxHeap
+    MinHeap<float> minimumHeap;        //declare MinHeap
+    maximumHeap.Initialize(heap_max, N, N);     
     minimumHeap.Initialize(heap_min, N, N);
 
     float tempMin1,tempMin2,SumMin;
-    while (true){
+    while (true){             
 
-        minimumHeap.DeleteMin(tempMin1);
-        minimumHeap.DeleteMin(tempMin2);
+        minimumHeap.DeleteMin(tempMin1);    //assigns the min element to tempMin1 | deletes the min element | restructs the heap
+        minimumHeap.DeleteMin(tempMin2);    //assigns the min element to tempMin1 | deletes the min element | restructs the heap
         
-        SumMin = tempMin1 + tempMin2;
+        SumMin = tempMin1 + tempMin2;    //calculates the sum of the 2 elements which were deleted
 
-        minimumHeap.Insert(SumMin);
+        minimumHeap.Insert(SumMin);     //inserts SumMin to the appropriate spot in the heap
 
-        if (minimumHeap.Size() == 1){
+        if (minimumHeap.Size() == 1){   //if there is only one element in the heap
 
-            minimumHeap.DeleteMin(SumMin);          //extraction of last element which has the sum of the heap
+            minimumHeap.DeleteMin(SumMin);   //extraction of last element which has the sum of the min heap
 
             cout << fixed;
-            cout << SumMin <<", is the sum of the Max Heap" << endl;
-            break;
+            cout << SumMin <<", is the sum of the Min Heap" << endl;
+            break;                //breaks the loop
         }
     }
 
@@ -69,21 +70,21 @@ int main(){
     float tempMax1,tempMax2,SumMax;
     while (true){
 
-        maximumHeap.DeleteMax(tempMax1);
-        maximumHeap.DeleteMax(tempMax2);
+        maximumHeap.DeleteMax(tempMax1);    //assigns the max element to tempMax1 | deletes the max element | restructs the heap
+        maximumHeap.DeleteMax(tempMax2);    //assigns the max element to tempMax1 | deletes the max element | restructs the heap
             
-        SumMax = tempMax1 + tempMax2;
+        SumMax = tempMax1 + tempMax2;      //calculates the sum of the 2 elements which were deleted
 
-        maximumHeap.Insert(SumMax);
+        maximumHeap.Insert(SumMax);         //inserts SumMax to the appropriate spot in the heap
 
-        if (maximumHeap.Size() == 1){
+        if (maximumHeap.Size() == 1){       //if there is only one element in the heap  
                 
-            maximumHeap.DeleteMax(SumMax);
+            maximumHeap.DeleteMax(SumMax);   //assigns the last element to SumMax | deletes the last element
 
             //cout << fixed;
-            cout << SumMax <<", is the sum of the Min Heap" << endl;
+            cout << SumMax <<", is the sum of the Max Heap" << endl;
             cout << endl;
-            break;
+            break;                 //breaks the loop
         }
     }
 
