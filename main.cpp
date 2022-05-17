@@ -50,7 +50,7 @@ int main(){
     while (true){             
 
         minimumHeap.DeleteMin(tempMin1);    //assigns the min element to tempMin1 | deletes the min element | restructs the heap
-        minimumHeap.DeleteMin(tempMin2);    //assigns the min element to tempMin1 | deletes the min element | restructs the heap
+        minimumHeap.DeleteMin(tempMin2);    //assigns the min element to tempMin2 | deletes the min element | restructs the heap
         
         SumMin = tempMin1 + tempMin2;    //calculates the sum of the 2 elements which were deleted
 
@@ -71,7 +71,7 @@ int main(){
     while (true){
 
         maximumHeap.DeleteMax(tempMax1);    //assigns the max element to tempMax1 | deletes the max element | restructs the heap
-        maximumHeap.DeleteMax(tempMax2);    //assigns the max element to tempMax1 | deletes the max element | restructs the heap
+        maximumHeap.DeleteMax(tempMax2);    //assigns the max element to tempMax2 | deletes the max element | restructs the heap
             
         SumMax = tempMax1 + tempMax2;      //calculates the sum of the 2 elements which were deleted
 
