@@ -17,7 +17,7 @@ int main(){
     int N; 
     cout << "Enter the size of the array named: heap_min: ";
     cin >> N;
-    while (N <= 0){                //sto telos prepei na allaxtei gia N > 10.000.000
+    while (N <= 0){                //sto telos prepei na allaxtei gia N > 10.000.000?
          cout << "Invalid size, please try again!\n" << "TIP: (the size of the array must be an integer greater than 0): ";
          cin >> N;
          cout << endl;
