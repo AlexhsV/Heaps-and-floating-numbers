@@ -6,7 +6,7 @@
 using namespace std;
 
 bool compare_float(float x, float y, float epsilon = 0.01f){
-   if(fabs(x - y) < epsilon) //check if the absolute value of the difference of SumMax and SumMin is less than epsilon, where epsilon is the least positive number defined as 0.01
+   if(fabs(x - y) < epsilon) //check if the absolute value of the difference of SumMax and SumMin is less than epsilon, where epsilon is the precision value
       return true; //they are same
       return false; //they are not same
 }
